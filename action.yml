@@ -7,7 +7,7 @@ inputs:
     default: 'docs/operations/'
   maintenance_path:
     description: 'Path to the maintenance documents'
-    required: true
+    required: false
     default: 'docs/maintenance/'
 # Removing the template_repo input for now and keep actions convoluted
 #  template_repo:
