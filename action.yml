@@ -32,7 +32,7 @@ runs:
       run: |
         echo "Checking for O and M documents"
         cd ${{ github.workspace }}
-        SCRIPT_PATH="/home/runner/work/_actions/nn-dma/check_o_and_m_files/scripts/check_om.sh"
+        SCRIPT_PATH="/home/runner/work/_actions/nn-dma/check_o_and_m_files/main/scripts/check_om.sh"
         chmod +x $SCRIPT_PATH
         o_and_m_files=$(${SCRIPT_PATH} ${{ inputs.operation_path }}
         echo "O and M files: $o_and_m_files"
