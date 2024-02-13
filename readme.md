@@ -1,1 +1,19 @@
-read.me
+# GitHub Action: Check for O and M documents
+
+## Description
+
+This action checks for O and M documents in your GitHub repository.
+
+## Inputs
+
+### `operation_path`
+
+The path to the operation documents. The default is `docs/operations/`.
+
+## Usage
+
+```yaml
+- name: Check for O and M documents
+  uses: nn-dma/check_o_and_m_files@main
+  with:
+    operation_path: 'path/to/your/operation/documents'
