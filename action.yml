@@ -1,0 +1,37 @@
+name: 'Check for O and M documents'
+description: 'Check for O and M documents'
+inputs:
+  operation_path:
+    description: 'Path to the operation documents'
+    required: true
+    default: 'docs/operations/'
+  maintenance_path:
+    description: 'Path to the maintenance documents'
+    required: true
+    default: 'docs/maintenance/'
+  template_repo:
+    description: 'path to template repository'
+    required: true
+    default: '/nn-dma/reference/template/'
+
+runs:
+  using: 'composite'
+  steps:
+    - Name: 'Checkout codebase' 
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+#    - Name: 'Checkout template repository'
+#      uses: actions/checkout@v2
+#      with:
+#        repository: ${{ inputs.template_repo }}
+#        path: '/nn-dma/reference/template/
+    - Name: 'Check for O and M documents'
+      run: |
+        echo "Checking for O and M documents"
+        cd ${{ github.workspace }}
+        SCRIPT_PATH=${{ inputs.template_repo }}/scripts/o_and_m.sh
+      shell: bash
+    
+    - 
+
