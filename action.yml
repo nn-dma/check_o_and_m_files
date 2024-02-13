@@ -38,6 +38,5 @@ runs:
         echo "O and M files: $o_and_m_files"
         echo $SCRIPT_PATH
       shell: bash
-    
-    - 
+ 
 
