@@ -9,10 +9,11 @@ inputs:
     description: 'Path to the maintenance documents'
     required: true
     default: 'docs/maintenance/'
-  template_repo:
-    description: 'path to template repository'
-    required: true
-    default: '/nn-dma/reference/template/'
+# Removing the template_repo input for now and keep actions convoluted
+#  template_repo:
+#    description: 'path to template repository'
+#    required: true
+#    default: '/nn-dma/reference/template/'
 
 runs:
   using: 'composite'
@@ -21,6 +22,7 @@ runs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
+# Removing the template_repo input for now and keep actions convoluted
 #    - Name: 'Checkout template repository'
 #      uses: actions/checkout@v2
 #      with:
@@ -30,7 +32,11 @@ runs:
       run: |
         echo "Checking for O and M documents"
         cd ${{ github.workspace }}
-        SCRIPT_PATH=${{ inputs.template_repo }}/scripts/o_and_m.sh
+        SCRIPT_PATH="/home/runner/work/_actions/nn-dma/check_o_and_m_files/scripts/check_om.sh"
+        chmod +x $SCRIPT_PATH
+        o_and_m_files=$(${SCRIPT_PATH} ${{ inputs.operation_path }}
+        echo "O and M files: $o_and_m_files"
+        echo $SCRIPT_PATH
       shell: bash
     
     - 
