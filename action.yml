@@ -5,16 +5,6 @@ inputs:
     description: 'Path to the operation documents'
     required: true
     default: 'docs/operations/'
-  maintenance_path:
-    description: 'Path to the maintenance documents'
-    required: false
-    default: 'docs/maintenance/'
-# Removing the template_repo input for now and keep actions convoluted
-#  template_repo:
-#    description: 'path to template repository'
-#    required: true
-#    default: '/nn-dma/reference/template/'
-
 runs:
   using: 'composite'
   steps:
@@ -22,17 +12,12 @@ runs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
-# Removing the template_repo input for now and keep actions convoluted
-#    - name: 'Checkout template repository'
-#      uses: actions/checkout@v2
-#      with:
-#        repository: ${{ inputs.template_repo }}
-#        path: '/nn-dma/reference/template/
     - name: 'Check for O and M documents'
       run: |
+        SCRIPT_HOME="/home/runner/work/_actions/nn-dma/check_o_and_m_files/main/scripts/" 
         echo "Checking for O and M documents"
         cd ${{ github.workspace }}
-        SCRIPT_PATH="/home/runner/work/_actions/nn-dma/check_o_and_m_files/main/scripts/o_and_m.sh"
+        SCRIPT_PATH=$SCRIPT_HOME "o_and_m.sh"
         chmod +x $SCRIPT_PATH
         o_and_m_files=$(${SCRIPT_PATH} ${{ inputs.operation_path }})
         echo "O and M files: $o_and_m_files"
