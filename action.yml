@@ -18,17 +18,17 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - Name: 'Checkout codebase' 
+    - name: 'Checkout codebase' 
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
 # Removing the template_repo input for now and keep actions convoluted
-#    - Name: 'Checkout template repository'
+#    - name: 'Checkout template repository'
 #      uses: actions/checkout@v2
 #      with:
 #        repository: ${{ inputs.template_repo }}
 #        path: '/nn-dma/reference/template/
-    - Name: 'Check for O and M documents'
+    - name: 'Check for O and M documents'
       run: |
         echo "Checking for O and M documents"
         cd ${{ github.workspace }}
