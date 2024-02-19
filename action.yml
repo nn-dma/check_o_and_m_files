@@ -9,7 +9,7 @@ inputs:
 outputs:
   o_and_m_files:
     description: 'O and M files'
-    required: true
+    value: ${{ steps.o_and_m_files.outputs.o_and_m_files }}
 
 runs:
   using: 'composite'
@@ -19,6 +19,7 @@ runs:
       with:
         fetch-depth: 0
     - name: 'Check for O and M documents'
+      id: o_and_m_files
       run: |
         SCRIPT_HOME="/home/runner/work/_actions/nn-dma/check_o_and_m_files/main/scripts/" 
         echo "Checking for O and M documents"
