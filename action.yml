@@ -32,6 +32,6 @@ runs:
           echo "o_and_m_files=false" >> $GITHUB_OUTPUT
         else
           echo "$o_and_m_files"
-          echo "o_and_m_files=true" >> $GITHUB_PUT
+          echo "o_and_m_files=true" >> $GITHUB_OUTPUT
         fi
       shell: bash
