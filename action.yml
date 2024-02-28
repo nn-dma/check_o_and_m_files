@@ -1,24 +1,24 @@
-name: 'Check for O and M documents'
-description: 'Check for O and M documents'
+name: "Check for O and M documents"
+description: "Check for O and M documents"
 inputs:
   operation_path:
-    description: 'Path to the operation documents'
+    description: "Path to the operation documents"
     required: true
-    default: 'docs/operations/'
+    default: "docs/operations/"
 
 outputs:
   o_and_m_files:
-    description: 'O and M files'
+    description: "O and M files"
     value: ${{ steps.o_and_m_files.outputs.o_and_m_files }}
 
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
-    - name: 'Checkout codebase'
+    - name: "Checkout codebase"
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
-    - name: 'Check for O and M documents'
+    - name: "Check for O and M documents"
       id: o_and_m_files
       run: |
         SCRIPT_HOME="/home/runner/work/_actions/nn-dma/check_o_and_m_files/main/scripts/" 
@@ -29,9 +29,9 @@ runs:
         echo "O and M files: $o_and_m_files"
         if [ -z "$o_and_m_files" ]; then
           echo "$o_and_m_files"
-          echo "o_and_m_files=false" >> $GITHUB_ENV
+          echo "o_and_m_files=false" >> $GITHUB_output
         else
           echo "$o_and_m_files"
-          echo "o_and_m_files=true" >> $GITHUB_ENV
+          echo "o_and_m_files=true" >> $GITHUB_output
         fi
       shell: bash
