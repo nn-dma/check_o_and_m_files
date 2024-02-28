@@ -29,9 +29,9 @@ runs:
         echo "O and M files: $o_and_m_files"
         if [ -z "$o_and_m_files" ]; then
           echo "$o_and_m_files"
-          echo "o_and_m_files=false" >> $GITHUB_output
+          echo "o_and_m_files=false" >> $GITHUB_OUTPUT
         else
           echo "$o_and_m_files"
-          echo "o_and_m_files=true" >> $GITHUB_output
+          echo "o_and_m_files=true" >> $GITHUB_PUT
         fi
       shell: bash
