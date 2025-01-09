@@ -27,8 +27,7 @@ done
 if [ $instScript ]; then
     echo "O & M docs have been updated"
     echo "Files updated: ${instScript_files[@]}"
-    echo "Initiating approval flow"
-    # Initiate approval flow
+    echo "true"
 else
-    echo "O & M docs have not been updated"
+    echo "false"
 fi

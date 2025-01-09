@@ -26,12 +26,13 @@ runs:
         SCRIPT_PATH="${SCRIPT_HOME}o_and_m.sh"
         chmod +x $SCRIPT_PATH
         o_and_m_files=$(${SCRIPT_PATH} ${{ inputs.operation_path }})
+        o_and_m_files_updated=$(${SCRIPT_PATH} ${{ inputs.operation_path }} | tail -n 1) # get only true/false
         echo "O and M files: $o_and_m_files"
-        if [ -z "$o_and_m_files" ]; then
-          echo "$o_and_m_files"
-          echo "o_and_m_files=false" >> $GITHUB_OUTPUT
+        if [ "$o_and_m_files_updated" == false ]; then
+          echo "o_and_m_files=false" >> "$GITHUB_OUTPUT"
+          echo "Approval workflow will NOT be triggered"
         else
-          echo "$o_and_m_files"
-          echo "o_and_m_files=true" >> $GITHUB_OUTPUT
+          echo "o_and_m_files=true" >> "$GITHUB_OUTPUT"
+          echo "Approval workflow WILL BE triggered"
         fi
       shell: bash
